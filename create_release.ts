@@ -4,9 +4,9 @@ const v = Deno.args[0];
 
 if (!v.startsWith("0")) throw new Error("Version not allowed");
 
-const content = Deno.readTextFileSync("constants.ts");
+const content = Deno.readTextFileSync("4_constants.ts");
 
-Deno.writeTextFileSync("constants.ts", content.replace(/(MTKruto )[0-9]+.[0-9]+.[0-9]+(";\n)/, `$1${v}$2`));
+Deno.writeTextFileSync("4_constants.ts", content.replace(/(MTKruto )[0-9]+.[0-9]+.[0-9]+(";\n)/, `$1${v}$2`));
 
 await $`git add constants.ts`;
 await $`git commit -m "Change version constant"`;
