@@ -8,7 +8,7 @@ const content = Deno.readTextFileSync("4_constants.ts");
 
 Deno.writeTextFileSync("4_constants.ts", content.replace(/(MTKruto )[0-9]+.[0-9]+.[0-9]+(";\n)/, `$1${v}$2`));
 
-await $`git add constants.ts`;
+await $`git add 4_constants.ts`;
 await $`git commit -m "Change version constant"`;
 await $`git tag ${v} -m ${v}`;
 await $`git push`;
