@@ -12,7 +12,7 @@ Deno.writeTextFileSync(
 );
 
 await $`git add 4_constants.ts`;
-await $`git commit -m "Change version constant"`;
+await $`git commit -m ${v}`;
 await $`git tag ${v} -m ${v}`;
 await $`git push`;
 await $`git push origin ${v}`;
