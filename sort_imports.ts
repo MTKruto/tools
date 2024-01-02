@@ -17,6 +17,9 @@ for (const dir of directories) {
       continue;
     }
     let lines = Deno.readTextFileSync(dir + "/" + entry.name).split("\n");
+    if (!lines[0].startsWith("import ")) {
+      continue;
+    }
     let imports = new Array<string>();
     for (const line of lines) {
       if (line.startsWith("import ")) {
