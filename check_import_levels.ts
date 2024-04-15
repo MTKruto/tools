@@ -62,8 +62,8 @@ for (
 
 console.log(
   violationCount == 0 ? "No" : violationCount + "",
-  "violation" + (violationCount == 1 ? "" : "s"),
-  "were found.",
+  "violation" + (violationCount == 1 ? " was" : "s were"),
+  " found.",
 );
 if (violationCount) {
   Deno.exit(1);

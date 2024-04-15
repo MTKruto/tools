@@ -1,4 +1,7 @@
-import { Project, SyntaxKind } from "https://deno.land/x/ts_morph@21.0.1/mod.ts";
+import {
+  Project,
+  SyntaxKind,
+} from "https://deno.land/x/ts_morph@21.0.1/mod.ts";
 
 const project = new Project();
 project.addSourceFilesAtPaths("./**/*.ts");
@@ -13,11 +16,17 @@ for (const sourceFile of project.getSourceFiles()) {
   }
 
   console.log("Checking", sourceFile.getFilePath());
-  const numericLiterals = sourceFile.getDescendantsOfKind(SyntaxKind.NumericLiteral);
+  const numericLiterals = sourceFile.getDescendantsOfKind(
+    SyntaxKind.NumericLiteral,
+  );
 
   for (const numericLiteral of numericLiterals) {
     if (numericLiteral.getText().startsWith("0x")) {
-      numericLiteral.replaceWithText("0x" + numericLiteral.getText().replace("0x", "").replaceAll("_", "").toUpperCase().padStart(2, "0"));
+      numericLiteral.replaceWithText(
+        "0x" +
+          numericLiteral.getText().replace("0x", "").replaceAll("_", "")
+            .toUpperCase().padStart(2, "0"),
+      );
     }
   }
 
