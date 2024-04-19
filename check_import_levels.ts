@@ -1,24 +1,12 @@
-import { basename, join } from "https://deno.land/std@0.221.0/path/mod.ts";
+import { basename } from "https://deno.land/std@0.221.0/path/mod.ts";
 import { red } from "https://deno.land/std@0.221.0/fmt/colors.ts";
 import { Project } from "https://deno.land/x/ts_morph@22.0.0/mod.ts";
-
-function getSourceFiles(path: string) {
-  return [...Deno.readDirSync(path)].filter((v) =>
-    v.isFile && v.name.endsWith(".ts")
-  ).map((v) => join(path, v.name));
-}
-
-const cwd = Deno.cwd();
-const directories = [...Deno.readDirSync(cwd)].filter((v) => v.isDirectory).map(
-  (v) => join(cwd, v.name),
-);
+import { iterSourceFiles } from "./_shared.ts";
 
 // ==== CHECK IMPORT LEVELS ==== //
 let violationCount = 0;
 const project = new Project();
-for (
-  const file of getSourceFiles(cwd).concat(...directories.map(getSourceFiles))
-) {
+for (const file of iterSourceFiles()) {
   const p = basename(file).split("_")[0];
   if (!p) {
     continue;
@@ -47,7 +35,7 @@ for (
       }
       return [p, v[1]];
     })
-    .filter((v): v is [number, number] => !isNaN(v[0]));
+    .filter((v): v is [number, number] => !isNaN(v[0] as number));
   project.removeSourceFile(sourceFile);
   for (const [l, line] of relativeImportLevels) {
     if (l == thisLevel && file.endsWith("_test.ts")) {
