@@ -33,7 +33,14 @@ for (const dir of directories) {
           b.replace(/^import.+from/, ""),
         )
       )
-      .sort((a, b) => b.match(/\./g)!.length - a.match(/\./g)!.length);
+      .sort((a, b) => {
+        const bMatch = b.match(/\./g);
+        const aMatch = a.match(/\./g);
+        if (!bMatch || !aMatch) {
+          return -1;
+        }
+        return b.match(/\./g)!.length - a.match(/\./g)!.length;
+      });
 
     Deno.writeTextFileSync(
       dir + "/" + entry.name,
