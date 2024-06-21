@@ -1,3 +1,5 @@
+import { licenseHeader } from "./_shared.ts";
+
 const directories = [
   "client",
   "connection",
@@ -16,7 +18,13 @@ for (const dir of directories) {
     if (!entry.name.endsWith(".ts")) {
       continue;
     }
-    let lines = Deno.readTextFileSync(dir + "/" + entry.name).split("\n");
+    let x = false;
+    let c = Deno.readTextFileSync(dir + "/" + entry.name);
+    if (c.startsWith(licenseHeader)) {
+      x= true
+      c = c.slice(licenseHeader.length).trim();
+    }
+    let lines = c.split("\n");
     if (!lines[0].startsWith("import ")) {
       continue;
     }
@@ -44,7 +52,8 @@ for (const dir of directories) {
 
     Deno.writeTextFileSync(
       dir + "/" + entry.name,
-      (imports.join("\n") + "\n" + lines.join("\n")).trim() + "\n",
+      (x? licenseHeader + "\n\n" : "") +
+        (imports.join("\n") + "\n" + lines.join("\n")).trim() + "\n",
     );
   }
 }
