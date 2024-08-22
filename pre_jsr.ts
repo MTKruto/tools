@@ -9,7 +9,7 @@ const config = parse(Deno.readTextFileSync("deno.jsonc")) as any;
 Deno.writeTextFileSync(
   "deno.jsonc",
   JSON.stringify(
-    { name: "@mtkruto/mtkruto", version, exports: "./mod.ts", ...config },
+    { name: "@mtkruto/mtkruto", version, license: "LGPL-3.0-or-later", exports: "./mod.ts", ...config },
     null,
     2,
   ),
