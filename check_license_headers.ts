@@ -1,5 +1,5 @@
 import { iterSourceFiles, licenseHeader } from "./_shared.ts";
-import { red } from "https://deno.land/std@0.221.0/fmt/colors.ts";
+import { red } from "jsr:@std/fmt@1/colors";
 
 let c = 0;
 for (const file of iterSourceFiles()) {

@@ -1,4 +1,4 @@
-import { parse } from "https://deno.land/std@0.217.0/jsonc/mod.ts";
+import { parse } from "jsr:@deno/jsonc@1";
 
 const version = Deno.args[0];
 
