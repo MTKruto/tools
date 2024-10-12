@@ -1,4 +1,4 @@
-import { parse } from "jsr:@deno/jsonc@1";
+import { parse } from "jsr:@std/jsonc@1";
 
 const version = Deno.args[0];
 
