@@ -21,7 +21,7 @@ for (const dir of directories) {
     let x = false;
     let c = Deno.readTextFileSync(dir + "/" + entry.name);
     if (c.startsWith(licenseHeader)) {
-      x= true
+      x = true;
       c = c.slice(licenseHeader.length).trim();
     }
     let lines = c.split("\n");
@@ -52,7 +52,7 @@ for (const dir of directories) {
 
     Deno.writeTextFileSync(
       dir + "/" + entry.name,
-      (x? licenseHeader + "\n\n" : "") +
+      (x ? licenseHeader + "\n\n" : "") +
         (imports.join("\n") + "\n" + lines.join("\n")).trim() + "\n",
     );
   }
