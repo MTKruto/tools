@@ -14,7 +14,6 @@ Deno.writeTextFileSync(
       version,
       license: "LGPL-3.0-or-later",
       exports: "./mod.ts",
-      vendor: true,
       ...config,
     },
     null,
