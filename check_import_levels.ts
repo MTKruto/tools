@@ -14,7 +14,10 @@ for (const file of iterSourceFiles()) {
   const thisLevel = p;
 
   const sourceFile = project.addSourceFileAtPath(file);
-  if (file === "mod.ts" || file.endsWith("/mod.ts")) {
+  if (
+    file === "mod.ts" || file.endsWith("/mod.ts") || file === "worker.ts" ||
+    file.endsWith("/worker.ts")
+  ) {
     continue;
   }
   interface RIL {
