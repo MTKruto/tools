@@ -3,6 +3,10 @@ import { red } from "https://deno.land/std@0.221.0/fmt/colors.ts";
 import { Project } from "https://deno.land/x/ts_morph@22.0.0/mod.ts";
 import { iterSourceFiles } from "./_shared.ts";
 
+function nextLevel(level: number) {
+  return level === "9".charCodeAt(0) ? "A".charCodeAt(0) : level + 1;
+}
+
 // ==== CHECK IMPORT LEVELS ==== //
 let violationCount = 0;
 const project = new Project();
@@ -69,7 +73,7 @@ for (const file of iterSourceFiles()) {
   )[0];
   if (
     high !== undefined &&
-    (high.level.charCodeAt(0) + 1 !== thisLevel.charCodeAt(0))
+    (nextLevel(high.level.charCodeAt(0)) !== thisLevel.charCodeAt(0))
   ) {
     if (file.endsWith("_test.ts")) {
       continue; // exception
