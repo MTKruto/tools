@@ -1,4 +1,4 @@
-import { type MethodDeclaration, Project } from "jsr:@ts-morph/ts-morph";
+import { type MethodDeclaration, Project } from "jsr:@ts-morph/ts-morph@28.0.0";
 
 const paths = Deno.args.length === 0
   ? [

@@ -1,4 +1,4 @@
-import { type MethodDeclaration, Project, SyntaxKind } from "jsr:@ts-morph/ts-morph";
+import { type MethodDeclaration, Project, SyntaxKind } from "jsr:@ts-morph/ts-morph@28.0.0";
 
 const contextPath = Deno.args[0] ?? "client/4_context.ts";
 
